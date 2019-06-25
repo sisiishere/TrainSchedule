@@ -1,0 +1,16 @@
+.cd-schedule__group > ul {
+    position: relative;
+    padding: 0 var(--component-padding);
+    display: flex;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .cd-schedule__event {
+    flex-shrink: 0;
+    float: left; 
+    height: 150px;
+    width: 70%;
+    max-width: 300px;
+  }
+  
