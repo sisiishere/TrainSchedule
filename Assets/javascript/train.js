@@ -1,86 +1,92 @@
-function ScheduleTemplate( element ) {
-    this.element = element;
-    this.timelineItems = this.element.getElementsByClassName('cd-schedule__timeline')[0].getElementsByTagName('li');
-    //..
-    this.singleEvents = this.element.getElementsByClassName('cd-schedule__event');
-    //..
-    this.initSchedule();
+var config = {
+    apiKey: "AIzaSyBLJcPBBw1RNSbQalesD24m9Sm8bWsp5B8",
+    authDomain: "homewerk-146b9.firebaseapp.com",
+    databaseURL: "https://homewerk-146b9.firebaseio.com",
+    projectId: "homewerk-146b9",
+    storageBucket: "",
+    messagingSenderId: "819362993445",
+    appId: "1:819362993445:web:800e1c60ebd14162"
   };
-  
-  ScheduleTemplate.prototype.initSchedule = function() {
-    this.scheduleReset();
-    this.initEvents();
-  };
-  ScheduleTemplate.prototype.placeEvents = function() {
-    // on big devices - place events in the template according to their time/day
-    var self = this,
-      slotHeight = this.topInfoElement.offsetHeight;
-    for(var i = 0; i < this.singleEvents.length; i++) {
-      var anchor = this.singleEvents[i].getElementsByTagName('a')[0];
-      var start = getScheduleTimestamp(anchor.getAttribute('data-start')),
-        duration = getScheduleTimestamp(anchor.getAttribute('data-end')) - start;
-  
-      var eventTop = slotHeight*(start - self.timelineStart)/self.timelineUnitDuration,
-        eventHeight = slotHeight*duration/self.timelineUnitDuration;
-  
-      this.singleEvents[i].setAttribute('style', 'top: '+(eventTop-1)+'px; height: '+(eventHeight +1)+'px');
-    }
-  };
-  ScheduleTemplate.prototype.openModal = function(target) {
-    var self = this;
-    var mq = self.mq();
-    this.animating = true;
-  
-    //update event name and time
-    this.modalEventName.textContent = target.getElementsByTagName('em')[0].textContent;
-    this.modalDate.textContent = target.getAttribute('data-start')+' - '+target.getAttribute('data-end');
-    this.modal.setAttribute('data-event', target.getAttribute('data-event'));
-  
-    //update event content
-    this.loadEventContent(target.getAttribute('data-content'));
-  
-    Util.addClass(this.modal, 'cd-schedule-modal--open');
-    
-    if( mq == 'mobile' ) {
-      self.modal.addEventListener('transitionend', function cb(){
-        self.animating = false;
-        self.modal.removeEventListener('transitionend', cb);
-      });
-    } else {
-      var eventPosition = target.getBoundingClientRect(),
-        eventTop = eventPosition.top,
-        eventLeft = eventPosition.left,
-        eventHeight = target.offsetHeight,
-        eventWidth = target.offsetWidth;
-  
-      var windowWidth = window.innerWidth,
-        windowHeight = window.innerHeight;
-  
-      var modalWidth = ( windowWidth*.8 > self.modalMaxWidth ) ? self.modalMaxWidth : windowWidth*.8,
-        modalHeight = ( windowHeight*.8 > self.modalMaxHeight ) ? self.modalMaxHeight : windowHeight*.8;
-  
-      var modalTranslateX = parseInt((windowWidth - modalWidth)/2 - eventLeft),
-        modalTranslateY = parseInt((windowHeight - modalHeight)/2 - eventTop);
-      
-      var HeaderBgScaleY = modalHeight/eventHeight,
-        BodyBgScaleX = (modalWidth - eventWidth);
-  
-      //change modal height/width and translate it
-      self.modal.setAttribute('style', 'top:'+eventTop+'px;left:'+eventLeft+'px;height:'+modalHeight+'px;width:'+modalWidth+'px;transform: translateY('+modalTranslateY+'px) translateX('+modalTranslateX+'px)');
-      //set modalHeader width
-      self.modalHeader.setAttribute('style', 'width:'+eventWidth+'px');
-      //set modalBody left margin
-      self.modalBody.setAttribute('style', 'margin-left:'+eventWidth+'px');
-      //change modalBodyBg height/width ans scale it
-      self.modalBodyBg.setAttribute('style', 'height:'+eventHeight+'px; width: 1px; transform: scaleY('+HeaderBgScaleY+') scaleX('+BodyBgScaleX+')');
-      //change modal modalHeaderBg height/width and scale it
-      self.modalHeaderBg.setAttribute('style', 'height: '+eventHeight+'px; width: '+eventWidth+'px; transform: scaleY('+HeaderBgScaleY+')');
-      
-      self.modalHeaderBg.addEventListener('transitionend', function cb(){
-        //wait for the  end of the modalHeaderBg transformation and show the modal content
-        self.animating = false;
-        Util.addClass(self.modal, 'cd-schedule-modal--animation-completed');
-        self.modalHeaderBg.removeEventListener('transitionend', cb);
-      });
-    }
-  };
+
+  firebase.initializeApp(config);
+
+  var dataRef = firebase.database();
+
+ 
+ 
+ // 2. Button for adding Employees
+ $("#add-train-btn").on("click", function(event) {
+   event.preventDefault();
+ 
+   // Grabs user input
+   var train = $("#train-name-input").val().trim();
+   var destination = $("#destination-input").val().trim();
+   var time = $("#time-input").moment().hour(Number);
+   var frequency = $("#frequency-input").val().trim();
+ 
+   // Creates local "temporary" object for holding train data
+   var newTrain = {
+     train: train,
+     destination: destination,
+     time: time,
+     frequency: frequency
+   };
+ 
+   // Uploads train data to the database
+   dataRef.ref().push(newTrain);
+ 
+   // Logs everything to console
+   console.log(newTrain);
+   console.log(newDestination);
+   console.log(newTime);
+   console.log(newFrequency);
+ 
+   alert("Train successfully added");
+ 
+   // Clears all of the text-boxes
+   $("#train-input").val("");
+   $("#destination-input").val("");
+   $("#time-input").val("");
+   $("#frequency-input").val("");
+ });
+ 
+ // 3. Create Firebase event for adding train to the database and a row in the html when a user adds an entry
+ dataRef.ref().on("child_added", function(childSnapshot) {
+   console.log(childSnapshot.val());
+ 
+   // Store everything into a variable.
+   var train = childSnapshot.val().train;
+   var destination = childSnapshot.val().destination;
+   var time = childSnapshot.val().time;
+   var frequency = childSnapshot.val().frequency;
+ 
+   // Train Info
+   console.log(train);
+   console.log(destination);
+   console.log(time);
+   console.log(frequency);
+ 
+   // Prettify the frequency
+   var frequencyPretty = moment.unix(frequency).format(Number);
+ 
+   // Calculate the months worked using hardcore math
+   // To calculate the months worked
+   var time = moment().diff(moment(frequency, "X"), "time");
+   console.log(time);
+ 
+   // Calculate the total billed rate
+   var timeLeft = time - frequency;
+   console.log(timeLeft);
+ 
+   // Create the new row
+   var newRow = $("<tr>").append(
+     $("<td>").text(train),
+     $("<td>").text(destination),
+     $("<td>").text(time),
+     $("<td>").text(frequency),
+   );
+ 
+   // Append the new row to the table
+   $("#train-table > tbody").append(newRow);
+ });
+ 
