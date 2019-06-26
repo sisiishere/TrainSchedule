@@ -10,63 +10,258 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Document</title>
 </head>
-<body>
-    <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
-        <div class="cd-schedule__timeline">
-          <ul>
-            <li><span>09:00</span></li>
-            <li><span>09:30</span></li>
-            <!-- additional elements here -->
-          </ul>
-        </div> <!-- .cd-schedule__timeline -->
-      
-        <div class="cd-schedule__events">
-          <ul>
-            <li class="cd-schedule__group">
-              <div class="cd-schedule__top-info"><span>Monday</span></div>
-      
-              <ul>
-                <li class="cd-schedule__event">
-                  <a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                    <em class="cd-schedule__name">Abs Circuit</em>
-                  </a>
-                </li>
-      
-                <!-- other events here --> 
-              </ul>
-            </li>
-      
-            <li class="cd-schedule__group">
-              <div class="cd-schedule__top-info"><span>Tuesday</span></div>
-      
-              <ul>
-                <!-- events here --> 
-              </ul>
-            </li>
-      
-            <!-- additional li.cd-schedule__group here --> 
-          </ul>
-        </div>
-      
-        <div class="cd-schedule-modal">
-          <header class="cd-schedule-modal__header">
-            <div class="cd-schedule-modal__content">
-              <span class="cd-schedule-modal__date"></span>
-              <h3 class="cd-schedule-modal__name"></h3>
-            </div>
-      
-            <div class="cd-schedule-modal__header-bg"></div>
-          </header>
-      
-          <div class="cd-schedule-modal__body">
-            <div class="cd-schedule-modal__event-info"></div>
-            <div class="cd-schedule-modal__body-bg"></div>
-          </div>
-      
-          <a href="#0" class="cd-schedule-modal__close text-replace">Close</a>
-        </div>
-      </div> <!-- .cd-schedule -->
 
+<body>
+    <div class="container">
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1 class="text-center">WMATA Metro Lines!</h1>
+      </div>
+
+      <div class="card" style= "background-color:violet">
+        <card id = "Metro">
+        <div class="row">
+          <div class="col-lg-2">
+            Train Colour
+          </div>
+          <div class="col-lg-1">
+            Red
+          </div>
+          <div class="col-lg-1">
+            Orange
+          </div>
+          <div class="col-lg-1">
+            Yellow
+          </div>
+          <div class="col-lg-1">
+            Green
+          </div>
+          <div class="col-lg-1">
+            Blue
+          </div>
+          <div class="col-lg-1">
+            Silver
+          </div> 
+        </div>
+        <div class="row">
+                <div class="col-lg-2">
+                  East
+                </div>
+                <div class="col-lg-1">
+                  Glemont
+                </div>
+                <div class="col-lg-1">
+                  New Carrolton
+                </div>
+                <div class="col-lg-1">
+                  Fort Totten
+                </div>
+                <div class="col-lg-1">
+                  Branch Avenue
+                </div>
+                <div class="col-lg-1">
+                  Largo
+                </div>
+                <div class="col-lg-1">
+                 Largo
+                </div>   
+              </div>
+              <div class="row">
+                    <div class="col-lg-2">
+                      Time
+                    </div>
+                    <div class="col-lg-1">
+                      Red
+                    </div>
+                    <div class="col-lg-1">
+                      Orange
+                    </div>
+                    <div class="col-lg-1">
+                      Yellow
+                    </div>
+                    <div class="col-lg-1">
+                      Green
+                    </div>
+                    <div class="col-lg-1">
+                      Blue
+                    </div>
+                    <div class="col-lg-1">
+                      Silver
+                    </div>   
+                  </div>
+              <div class="row">
+                    <div class="col-lg-2">
+                      West
+                    </div>
+                    <div class="col-lg-1">
+                      Shady Grove
+                    </div>
+                    <div class="col-lg-1">
+                      Vienna
+                    </div>
+                    <div class="col-lg-1">
+                      Hungtington
+                    </div>
+                    <div class="col-lg-1">
+                      Greenbelt
+                    </div>
+                    <div class="col-lg-1">
+                      Franconia/Springfield
+                    </div>
+                    <div class="col-lg-1">
+                      Wielhe/Reston
+                    </div>   
+                  </div>
+                  <div class="row">
+                        <div class="col-lg-2">
+                          Time
+                        </div>
+                        <div class="col-lg-1">
+                          Red
+                        </div>
+                        <div class="col-lg-1">
+                          Orange
+                        </div>
+                        <div class="col-lg-1">
+                          Yellow
+                        </div>
+                        <div class="col-lg-1">
+                          Green
+                        </div>
+                        <div class="col-lg-1">
+                          Blue
+                        </div>
+                        <div class="col-lg-1">
+                          Silver
+                        </div>   
+                      </div>
+                    </card>              
+    </div>
+    <br>
+    <br>
+    <div class="card" style= "background-color:red">
+        <card id= "Red">
+            <div class="row">
+              <div class="col-lg-3">
+                Red
+              </div>
+              <div class="col-lg-3">
+                Stop
+              </div>
+              <div class="col-lg-3">
+                Off Peak
+              </div>
+              <div class="col-lg-3">
+                On Peak
+              </div>
+            </card>
+            </div>
+            <br>
+            <br>
+
+          </div>
+          <div class="card" style= "background-color:orange">
+              <card id= "Orange">
+                <div class="row">
+                  <div class="col-lg-3">
+                    Orange
+                  </div>
+                  <div class="col-lg-3">
+                    Stop
+                  </div>
+                  <div class="col-lg-3">
+                    Off Peak
+                  </div>
+                  <div class="col-lg-3">
+                    On Peak
+                  </div>
+                </card>
+                </div>
+    
+              </div>
+              <br>
+              <br>
+              <div class="card" style= "background-color:yellow">
+                  <card id= "Yellow">
+                    <div class="row">
+                      <div class="col-lg-3">
+                        Yellow
+                      </div>
+                      <div class="col-lg-3">
+                        Stop
+                      </div>
+                      <div class="col-lg-3">
+                        Off Peak
+                      </div>
+                      <div class="col-lg-3">
+                        On Peak
+                      </div>
+                      </card>
+                    </div>
+        
+                  </div>
+                  <br>
+                  <br>
+                  <div class="card" style= "background-color:green">
+                      <card id= "Green">
+                        <div class="row">
+                          <div class="col-lg-3">
+                            Green
+                          </div>
+                          <div class="col-lg-3">
+                            Stop
+                          </div>
+                          <div class="col-lg-3">
+                            Off Peak
+                          </div>
+                          <div class="col-lg-3">
+                            On Peak
+                          </div>
+                          </card>
+                        </div>
+            
+                      </div>
+                      <br>
+                      <br>
+                      <div class="card" style= "background-color:blue">
+                          <card id= "Blue">
+                            <div class="row">
+                              <div class="col-lg-3">
+                                Blue
+                              </div>
+                              <div class="col-lg-3">
+                                Stop
+                              </div>
+                              <div class="col-lg-3">
+                                Off Peak
+                              </div>
+                              <div class="col-lg-3">
+                                On Peak
+                              </div>
+                            </div>
+                         </card>
+                          </div>
+                        <br>
+                        <br>
+                          <div class="card" style= "background-color:silver">
+                              <card id="Silver">
+                                <div class="row">
+                                  <div class="col-lg-3">
+                                    Silver
+                                  </div>
+                                  <div class="col-lg-3">
+                                    Stop
+                                  </div>
+                                  <div class="col-lg-3">
+                                    Off Peak
+                                  </div>
+                                  <div class="col-lg-3">
+                                    On Peak
+                                  </div>
+                                </card>
+                                </div>
+                                
+                              </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script type="text/javascript"></script>
       <script src= "./Assets/javascript/train.js"></script>
