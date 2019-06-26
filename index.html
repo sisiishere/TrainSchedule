@@ -8,261 +8,105 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Document</title>
+    <title>Train Station</title>
+
+
+
+<!-- Firebase References -->
+<script src="https://www.gstatic.com/firebasejs/6.2.3/firebase.js"></script>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Moment.js Reference -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+<style>
+  #employee-table th,
+  td {
+    display: inline-block;
+    width: 16.575%;
+  }
+</style>
 </head>
 
 <body>
-    <div class="container">
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1 class="text-center">WMATA Metro Lines!</h1>
-      </div>
 
-      <div class="card" style= "background-color:violet">
-        <card id = "Metro">
-        <div class="row">
-          <div class="col-lg-2">
-            Train Colour
-          </div>
-          <div class="col-lg-1">
-            Red
-          </div>
-          <div class="col-lg-1">
-            Orange
-          </div>
-          <div class="col-lg-1">
-            Yellow
-          </div>
-          <div class="col-lg-1">
-            Green
-          </div>
-          <div class="col-lg-1">
-            Blue
-          </div>
-          <div class="col-lg-1">
-            Silver
-          </div> 
+<!-- Train Tracker -->
+<div class="container">
+
+  <!-- Jumbotron -->
+  <div class="jumbotron" style="background-color: rgb(132, 0, 255); color: rgb(255, 0, 55)">
+    <h1 class="text-center">Train Station</h1>
+    <h3 class="text-center">The Schedule</h3>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+
+      <!-- Current Trains Running-->
+      <div class="card mb-4" style="background-color: rgb(174, 0, 255)">
+        <div class="card-header">Current Trains Running</div>
+        <div class="card-body">
+          <table class="table table-sm table-hover" id='train-table'>
+            <thead>
+              <tr>
+                <th scope="col">Train</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Time</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Time Left</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
         </div>
-        <div class="row">
-                <div class="col-lg-2">
-                  East
-                </div>
-                <div class="col-lg-1">
-                  Glemont
-                </div>
-                <div class="col-lg-1">
-                  New Carrolton
-                </div>
-                <div class="col-lg-1">
-                  Fort Totten
-                </div>
-                <div class="col-lg-1">
-                  Branch Avenue
-                </div>
-                <div class="col-lg-1">
-                  Largo
-                </div>
-                <div class="col-lg-1">
-                 Largo
-                </div>   
-              </div>
-              <div class="row">
-                    <div class="col-lg-2">
-                      Time
-                    </div>
-                    <div class="col-lg-1">
-                      Red
-                    </div>
-                    <div class="col-lg-1">
-                      Orange
-                    </div>
-                    <div class="col-lg-1">
-                      Yellow
-                    </div>
-                    <div class="col-lg-1">
-                      Green
-                    </div>
-                    <div class="col-lg-1">
-                      Blue
-                    </div>
-                    <div class="col-lg-1">
-                      Silver
-                    </div>   
-                  </div>
-              <div class="row">
-                    <div class="col-lg-2">
-                      West
-                    </div>
-                    <div class="col-lg-1">
-                      Shady Grove
-                    </div>
-                    <div class="col-lg-1">
-                      Vienna
-                    </div>
-                    <div class="col-lg-1">
-                      Hungtington
-                    </div>
-                    <div class="col-lg-1">
-                      Greenbelt
-                    </div>
-                    <div class="col-lg-1">
-                      Franconia/Springfield
-                    </div>
-                    <div class="col-lg-1">
-                      Wielhe/Reston
-                    </div>   
-                  </div>
-                  <div class="row">
-                        <div class="col-lg-2">
-                          Time
-                        </div>
-                        <div class="col-lg-1">
-                          Red
-                        </div>
-                        <div class="col-lg-1">
-                          Orange
-                        </div>
-                        <div class="col-lg-1">
-                          Yellow
-                        </div>
-                        <div class="col-lg-1">
-                          Green
-                        </div>
-                        <div class="col-lg-1">
-                          Blue
-                        </div>
-                        <div class="col-lg-1">
-                          Silver
-                        </div>   
-                      </div>
-                    </card>              
+      </div>
     </div>
-    <br>
-    <br>
-    <div class="card" style= "background-color:red">
-        <card id= "Red">
-            <div class="row">
-              <div class="col-lg-3">
-                Red
-              </div>
-              <div class="col-lg-3">
-                Stop
-              </div>
-              <div class="col-lg-3">
-                Off Peak
-              </div>
-              <div class="col-lg-3">
-                On Peak
-              </div>
-            </card>
-            </div>
-            <br>
-            <br>
+  </div>
 
-          </div>
-          <div class="card" style= "background-color:orange">
-              <card id= "Orange">
-                <div class="row">
-                  <div class="col-lg-3">
-                    Orange
-                  </div>
-                  <div class="col-lg-3">
-                    Stop
-                  </div>
-                  <div class="col-lg-3">
-                    Off Peak
-                  </div>
-                  <div class="col-lg-3">
-                    On Peak
-                  </div>
-                </card>
-                </div>
-    
-              </div>
-              <br>
-              <br>
-              <div class="card" style= "background-color:yellow">
-                  <card id= "Yellow">
-                    <div class="row">
-                      <div class="col-lg-3">
-                        Yellow
-                      </div>
-                      <div class="col-lg-3">
-                        Stop
-                      </div>
-                      <div class="col-lg-3">
-                        Off Peak
-                      </div>
-                      <div class="col-lg-3">
-                        On Peak
-                      </div>
-                      </card>
-                    </div>
-        
-                  </div>
-                  <br>
-                  <br>
-                  <div class="card" style= "background-color:green">
-                      <card id= "Green">
-                        <div class="row">
-                          <div class="col-lg-3">
-                            Green
-                          </div>
-                          <div class="col-lg-3">
-                            Stop
-                          </div>
-                          <div class="col-lg-3">
-                            Off Peak
-                          </div>
-                          <div class="col-lg-3">
-                            On Peak
-                          </div>
-                          </card>
-                        </div>
-            
-                      </div>
-                      <br>
-                      <br>
-                      <div class="card" style= "background-color:blue">
-                          <card id= "Blue">
-                            <div class="row">
-                              <div class="col-lg-3">
-                                Blue
-                              </div>
-                              <div class="col-lg-3">
-                                Stop
-                              </div>
-                              <div class="col-lg-3">
-                                Off Peak
-                              </div>
-                              <div class="col-lg-3">
-                                On Peak
-                              </div>
-                            </div>
-                         </card>
-                          </div>
-                        <br>
-                        <br>
-                          <div class="card" style= "background-color:silver">
-                              <card id="Silver">
-                                <div class="row">
-                                  <div class="col-lg-3">
-                                    Silver
-                                  </div>
-                                  <div class="col-lg-3">
-                                    Stop
-                                  </div>
-                                  <div class="col-lg-3">
-                                    Off Peak
-                                  </div>
-                                  <div class="col-lg-3">
-                                    On Peak
-                                  </div>
-                                </card>
-                                </div>
-                                
-                              </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Add Train  -->
+      <div class="card mb-4"  style="background-color: rgb(255, 0, 106)">
+        <div class="card-header">Add Train</div>
+        <div class="card-body">
+
+          <!-- Entry Form -->
+          <form>
+            <div class="form-group">
+              <label for="train-input">Train</label>
+              <input class="form-control" id="train-input" placeholder="Amtrak" type="text">
+            </div>
+            <div class="form-group">
+              <label for="destination-input">Destination</label>
+              <input class="form-control" id="destination-input" placeholder="Los Angeles" type="text">
+            </div>
+            <div class="form-group">
+              <label for="time-input">Time</label>
+              <input class="form-control" id="time-input" placeholder="19:00" type="text">
+            </div>
+            <div class="form-group">
+              <label for="frequency-input">Frequency</label>
+              <input class="form-control" id="frequency-input" placeholder="every two hours" type="text">
+            </div>
+            <button class="btn float-right" id="add-train-btn">Submit</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- JavaScript -->
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/en-gb.js" integrity="sha256-VWXSrU6D6hQJ7MEZ9062PvZDwmeRuZ8eE/ToQ2N3QjA=" crossorigin="anonymous"></script>
       <script type="text/javascript"></script>
       <script src= "./Assets/javascript/train.js"></script>
 
