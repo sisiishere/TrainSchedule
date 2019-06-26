@@ -1,16 +1,40 @@
-.cd-schedule__group > ul {
-    position: relative;
-    padding: 0 var(--component-padding);
-    display: flex;
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .cd-schedule__event {
-    flex-shrink: 0;
-    float: left; 
-    height: 150px;
-    width: 70%;
-    max-width: 300px;
-  }
-  
+.container {
+  margin: 0px;
+  border: 0px;
+  background-color: rgb(255, 0, 255)
+}
+#train-table {
+  margin: 0px;
+  border: 0px;
+  background-color: rgb(212, 0, 255)
+}
+.form-group {
+  margin: 0px;
+  border: 0px;
+  background-color: rgb(255, 0, 179)
+}
+#train-input {
+  margin: 0px;
+  border: 0px;
+  background-color: rgb(255, 0, 13)
+}
+#destination-input {
+  margin: 0px;
+  border: 0px;
+  background-color: rgb(255, 0, 13)
+}
+#time-input {
+  margin: 0px;
+  border: 0px;
+  background-color: rgb(255, 0, 13)
+}
+#frequency-input {
+  margin: 0px;
+  border: 0px;
+  background-color: rgb(255, 0, 13)
+}
+#add-train-btn {
+  margin: 0px;
+  border: 0px;
+  background-color: rgb(89, 0, 255)
+}
