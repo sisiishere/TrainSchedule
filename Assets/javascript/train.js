@@ -23,32 +23,63 @@ var config = {
    var destination = $("#destination-input").val().trim();
    var time = $("#time-input").val().trim();
    var frequency = $("#frequency-input").val().trim();
-   moment("1834", "hmm").format("HH:mm") 
+   moment("", "hmm").format("HH:mm") 
 
-   //Time Conversion
-   function calcMinutesAway(tStart, tFreq) {
-     console.log("$(tFreq), $(tStart)")
-     return parseInt(tFreq) - parseInt(tStart) % parseInt(tFreq);
-   }
+    //var startTime = "14:00";
+    var timeStart = moment("", "hh:mm");
+    console.log("Start Time: " + timeStart);
+  
+    var timeLeft = calcMinutesAway(timeStart, frequency);
+    console.log("The next train will arrive in: " + timeLeft + " minutes.");
+    if (timeLeft === parseInt(frequency)) {
+      timeLeft = 0;
+    }
+ 
+ 
+    var timeNow = moment();   // passing in NO arguments to moment() gives you "now"
+ // ** TEST ** Log the result
+ console.log("Time Now: " + timeNow); // The result is a UNIX timestamp time
+ 
+ var stringDateNow = moment().format();
+ // ** TEST ** Log the result
+ console.log("Time Now: " + stringDateNow); // The result is in UTC STRING time RIGHT NOW. Compare this vs. the todayDate OBJECT
+ 
+ // Let's just look at the TIME and not the date
+ var timeFormated = moment(timeNow).format("hh:mm");
+ // ** TEST ** Log the result
+ console.log("Time Now Formated: " + timeFormated);
+ 
+//Time Conversion
+function calcMinutesAway(timeStart, frequency) {
+  console.log("$frequnecy-input, $time Start")
+  return parseInt(frequency) - parseInt(timeStart) % parseInt(frequency);
+}
 
-   function calcNextArrival(tminutesAway) {
-     return moment().add(tMinutesAway, "m").format("HH:mm");
-   }
-   
-   var tminutesAway = calcMinutesAway(tStart, tFreq);
-   console.log("The next train will arrive in: " + tminutesAway + " minutes.");
-   if (tminutesAway === parseInt(tFreq)) {
-     tminutesAway = 0;
-   }
+function calcNextArrival(timeLeft) {
+  return moment().add(timeLeft, "m").format("HH:mm");
+}
 
-   var tnextArrival = calcNextArrival(tminutesAway);
+ 
+ // Let's find the DIFFERENCE of the two times "startTime" and "timeNow"
+ 
+ // *** DIFFERENCE IN HOURS **** //
+ var differenceHRS = moment().diff(timeStart, "hours");
+ // ** TEST ** Log the result in 'hours'
+ console.log("Difference Start Time vs Now: " + differenceHRS + " hours");
+ // *** DIFFERENCE IN MINUTES **** //
+ var differenceMIN = moment().diff(timeStart, "minutes");
+ // ** TEST ** Log the result in 'minutes'
+ console.log("Difference Start Time vs Now: " + differenceMIN + " minutes");
+ 
+  
+   var tnextArrival = calcNextArrival(timeLeft);
    console.log("The next train will arrive at: " + tnextArrival);
  
    // Creates local "temporary" object for holding train data
    var newTrain = {
      train: train,
      destination: destination,
-    time: time,
+     time: time,
      frequency: frequency
    };
  
@@ -98,13 +129,15 @@ var config = {
  
    // Calculate the months worked using hardcore math
    // To calculate the months worked
-   var time = moment().diff(moment(frequency, "X"), "time");
-   console.log(time);
- 
+   //var time = moment().diff(moment(frequency, "X"), "time");
+   //console.log(time);
+   var convertdTime = moment(time).format("hh:mm");
+  console.log(convertdTime);
    // Calculate the total billed rate
-   var timeLeft = time - frequency;
+   var timeLeft = convertdTime - frequency;
    console.log(timeLeft);
- 
+
+  
    // Create the new row
    var newRow = $("<tr>").append(
      $("<td>").text(train),
