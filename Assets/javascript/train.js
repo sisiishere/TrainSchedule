@@ -19,16 +19,36 @@ var config = {
    event.preventDefault();
  
    // Grabs user input
-   var train = $("#train-name-input").val().trim();
+   var train = $("#train-input").val().trim();
    var destination = $("#destination-input").val().trim();
-   var time = $("#time-input").moment().hour(Number);
+   var time = $("#time-input").val().trim();
    var frequency = $("#frequency-input").val().trim();
+   moment("1834", "hmm").format("HH:mm") 
+
+   //Time Conversion
+   function calcMinutesAway(tStart, tFreq) {
+     console.log("$(tFreq), $(tStart)")
+     return parseInt(tFreq) - parseInt(tStart) % parseInt(tFreq);
+   }
+
+   function calcNextArrival(tminutesAway) {
+     return moment().add(tMinutesAway, "m").format("HH:mm");
+   }
+   
+   var tminutesAway = calcMinutesAway(tStart, tFreq);
+   console.log("The next train will arrive in: " + tminutesAway + " minutes.");
+   if (tminutesAway === parseInt(tFreq)) {
+     tminutesAway = 0;
+   }
+
+   var tnextArrival = calcNextArrival(tminutesAway);
+   console.log("The next train will arrive at: " + tnextArrival);
  
    // Creates local "temporary" object for holding train data
    var newTrain = {
      train: train,
      destination: destination,
-     time: time,
+    time: time,
      frequency: frequency
    };
  
@@ -37,9 +57,9 @@ var config = {
  
    // Logs everything to console
    console.log(newTrain);
-   console.log(newDestination);
-   console.log(newTime);
-   console.log(newFrequency);
+   //console.log(newDestination);
+   //console.log(newTime);
+   //console.log(newFrequency);
  
    alert("Train successfully added");
  
@@ -59,6 +79,13 @@ var config = {
    var destination = childSnapshot.val().destination;
    var time = childSnapshot.val().time;
    var frequency = childSnapshot.val().frequency;
+
+   var milliseconds = parseInt("7395000");
+   var hours = Math.floor(milliseconds / 3600000);
+   var minutes = Math.floor((milliseconds - (hours * 3600000)) / 60000);
+   var seconds = parseInt((milliseconds - (hours * 3600000) - (minutes * 60000)) / 1000);
+
+
  
    // Train Info
    console.log(train);
@@ -67,7 +94,7 @@ var config = {
    console.log(frequency);
  
    // Prettify the frequency
-   var frequencyPretty = moment.unix(frequency).format(Number);
+   //var frequencyPretty = moment.unix(frequency).format(Number);
  
    // Calculate the months worked using hardcore math
    // To calculate the months worked
@@ -84,6 +111,7 @@ var config = {
      $("<td>").text(destination),
      $("<td>").text(time),
      $("<td>").text(frequency),
+     $("<td>").text(timeLeft),
    );
  
    // Append the new row to the table
