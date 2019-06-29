@@ -123,6 +123,18 @@ function calcNextArrival(timeLeft) {
    console.log(destination);
    console.log(time);
    console.log(frequency);
+
+   // Time apart (remainder)
+var timeLeft = convertdTime % frequency;
+console.log(timeLeft);
+
+// Minute Until Train
+var tMinutesTillTrain = frequency - timeLeft;
+console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+// Next Train
+var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
  
    // Prettify the frequency
    //var frequencyPretty = moment.unix(frequency).format(Number);
@@ -131,11 +143,79 @@ function calcNextArrival(timeLeft) {
    // To calculate the months worked
    //var time = moment().diff(moment(frequency, "X"), "time");
    //console.log(time);
-   var convertdTime = moment(time).format("hh:mm");
+   var convertdTime = moment(time).format("HH:mm");
   console.log(convertdTime);
    // Calculate the total billed rate
-   var timeLeft = convertdTime - frequency;
-   console.log(timeLeft);
+   //var timeLeft = convertdTime - frequency;
+   //console.log(timeLeft);
+
+
+   // Let's just look at the TIME and not the date
+var timeFormated = moment(convertdTime).format("HH:mm");
+// ** TEST ** Log the result
+console.log("Time Now Formated: " + timeFormated);
+
+
+
+// Time is 3:30 AM
+var firstTime = "16:00";
+
+// First Time (pushed back 1 year to make sure it comes before current time)
+var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+console.log(firstTimeConverted);
+
+// Current Time
+var Time = moment();
+console.log("CURRENT TIME: " + moment(Time).format("hh:mm"));
+
+
+
+// Let's find the DIFFERENCE of the two times "startTime" and "timeNow"
+
+// *** DIFFERENCE IN HOURS **** //
+var differenceHRS = moment().diff(convertdTime, "hours");
+// ** TEST ** Log the result in 'hours'
+console.log("Difference Start Time vs Now: " + differenceHRS + " hours");
+// *** DIFFERENCE IN MINUTES **** //
+var differenceMIN = moment().diff(convertdTime, "minutes");
+// ** TEST ** Log the result in 'minutes'
+console.log("Difference time-input vs frequnecy-input: " + differenceMIN + " minutes");
+
+// ******************* LET'S PLAY WITH AN INPUT ************** //
+
+// Grab the Form "Submit" Button click and LISTEN for an EVENT
+$("#add-input-btn").on("click", function (event) {
+    // Prevent Default Browser Reload when "submit" button pressed
+    event.preventDefault();
+    $("#time").empty();
+    $("#difference").empty();
+    // Let's grab the text of the user input
+    var time = $("#user-input").val().trim();
+    // ** TEST ** Log the result
+    console.log(time);
+    // var startTime = "06:00";
+    var differenceMIN = moment(timeStart - frequency, "hh:mm");
+    console.log("Start Time: " + submitTime);
+
+    // *** DIFFERENCE IN HOURS **** //
+    var differenceHRS = moment().diff(submitTime, "hours");
+    // ** TEST ** Log the result in 'hours'
+    console.log("Difference Start Time vs Now: " + differenceHRS + " hours");
+    // *** DIFFERENCE IN MINUTES **** //
+    var differenceMIN = moment().diff(frequency, "minutes");
+    // ** TEST ** Log the result in 'minutes'
+    console.log("Difference Start Time vs Now: " + differenceMIN + " minutes");
+
+    // $("#time").append(moment(startTime, "hh:mm").text);
+    var displayStart = $("<p>").text(moment(submitTime).format("hh:mm"));
+
+    var displayDifferenceHR = $("<p>").text(differenceHRS + " Hours since Start Time");
+    var displayDifferenceMIN = $("<p>").text(differenceMIN + " Minutes since Start Time");
+    $("#time").append(displayStart);
+    $("#difference").append(displayDifferenceHR);
+    $("#difference").append(displayDifferenceMIN);
+});
+
 
   
    // Create the new row
@@ -144,7 +224,7 @@ function calcNextArrival(timeLeft) {
      $("<td>").text(destination),
      $("<td>").text(time),
      $("<td>").text(frequency),
-     $("<td>").text(timeLeft),
+     $("<td>").text(tMinutesTillTrain),
    );
  
    // Append the new row to the table
