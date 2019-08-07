@@ -1,4 +1,4 @@
-var config = {
+var config = { 
     apiKey: "AIzaSyBLJcPBBw1RNSbQalesD24m9Sm8bWsp5B8",
     authDomain: "homewerk-146b9.firebaseapp.com",
     databaseURL: "https://homewerk-146b9.firebaseio.com",
