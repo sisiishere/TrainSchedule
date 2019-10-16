@@ -1,0 +1,13 @@
+var person: {
+    name: "Brad",
+    age: "35"
+    address: {
+        street: "5 main st",
+        city: "Boston"
+    },
+    children: ["Brianna", "Nicholas"] 
+}
+
+//person = JSON.stringify(person);
+
+console.log(person.address.street);
