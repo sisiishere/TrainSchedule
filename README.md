@@ -4,10 +4,6 @@ This app is basically a schedule on the train arrival based on the destination.
 
 Includes: the time the train arrives, minutes until arrival, and the frequency of the train arrival.
 
-TriviaGame
-
-Trivia Game is a quiz app involving guessing answers to the questions based on some drag queens from the shows such as: RuPaul's Drag Race, Dragula, and Drag Race Thailand, within the 52 second limit.
-
 Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
@@ -48,7 +44,7 @@ Deployment with Heroku
 5. Then type in git push heroku master for deployment
 6. Once the app is built and deployed successfully,go to heroku to click on the app
 7. In the app menu, then click the button (open the app)
-7. Once the app is successfully displayed, then it's good to go
+8. Once the app is successfully displayed, then it's good to go. site: https://guarded-dawn-35329.herokuapp.com/
 
 Built With
 Heroku
